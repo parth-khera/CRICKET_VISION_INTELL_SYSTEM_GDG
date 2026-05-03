@@ -176,11 +176,6 @@ This project is designed for:
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
 
 ## ⭐ Support
 
@@ -189,15 +184,6 @@ If you found this project useful:
 * ⭐ Star this repository
 * 🍴 Fork it
 * 🧠 Contribute ideas
-
----
-
-## 📬 Contact
-
-For collaborations or queries:
-
-📧 Reach out via GitHub or LinkedIn
-
 ---
 
 > ⚡ "Cricket is not just a game of numbers — it's a game of intelligence. This system decodes it."
