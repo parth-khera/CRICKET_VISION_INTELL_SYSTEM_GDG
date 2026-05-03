@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+opencv-python-headless
+google-generativeai
+numpy
+jinja2
+python-dotenv
+httpx
+beautifulsoup4
