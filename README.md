@@ -1,84 +1,92 @@
 # 🏏 Cricket Vision Intelligence System
 
-> AI-powered cricket analytics system that understands *how* the game is played — not just the score.
+> AI-powered cricket analytics system that understands gameplay using computer vision and AI.
 
 ---
 
 ## 🚀 Overview
 
-Cricket Vision Intelligence System is an advanced AI-driven platform that analyzes cricket matches using **computer vision + real-time data + generative AI (Gemini API)**.
-
-Instead of just showing stats like runs or strike rate, this system provides **deep tactical insights**, such as:
-
-* Shot type detection (cover drive, pull, sweep, etc.)
-* Ball delivery classification (yorker, bouncer, swing, spin)
-* Player behavior and performance tracking
-* Context-aware match intelligence
+Cricket Vision Intelligence System is designed to analyze cricket matches beyond traditional statistics. Using **Computer Vision + AI (Gemini API)**, it detects shots, classifies deliveries, and generates intelligent insights from match visuals.
 
 ---
 
 ## 🎯 Problem Statement
 
-Traditional cricket analytics fail to capture:
-
-* What exact shot was played
-* What type of ball was delivered
-* When and why key moments happened
-
-They only provide basic numbers like:
+Traditional cricket analytics only provide:
 
 * Runs scored
 * Ball speed
 * Strike rate
 
-👉 This misses the **real intelligence behind the game**
+They fail to capture:
+
+* Shot type played
+* Type of delivery bowled
+* Context behind gameplay
 
 ---
 
 ## 💡 Solution
 
-This system combines:
+This system processes cricket images and match visuals to generate:
 
-* 🤖 **Gemini AI API** → for intelligent insights & commentary
-* 🎥 **Computer Vision (OpenCV)** → for visual analysis
-* 📊 **Real-time + historical data processing**
-* 🧠 **AI Agents** → for decision-making & analysis
+* 🎯 Shot classification (cover drive, pull, etc.)
+* 🎯 Ball type detection (yorker, bouncer, swing)
+* 🧠 AI-generated insights using Gemini API
+* 📊 Context-aware match analysis
 
-### ✅ Output Capabilities:
+---
 
-* Shot classification
-* Ball type recognition
-* AI-generated match insights
-* Analysis from past match images
-* Real-time understanding of gameplay
+## 📁 Dataset (Images)
+
+The system uses cricket images stored locally for analysis.
+
+### 📍 Local Dataset Path:
+
+```id="datasetpath1"
+C:\Users\Parth\.gemini\antigravity\gdgps1\photos
+```
+
+### ⚠️ Important Notes:
+
+* This path is **local to your system** and will NOT work on other machines or deployments.
+* For portability, move images inside the project directory like:
+
+```id="datasetpath2"
+project_root/
+└── photos/
+```
+
+Then update your code:
+
+```python id="datasetpath3"
+image_folder = "photos/"
+```
 
 ---
 
 ## ⚙️ Tech Stack
 
-| Layer      | Technology            |
-| ---------- | --------------------- |
-| Backend    | Python                |
-| AI Engine  | Gemini API            |
-| Vision     | OpenCV                |
-| Frontend   | HTML, CSS, JavaScript |
-| Data Tools | NumPy, Pandas         |
+* **Backend:** Python
+* **AI:** Gemini API
+* **Computer Vision:** OpenCV
+* **Frontend:** HTML, CSS, JavaScript
+* **Libraries:** NumPy, Pandas
 
 ---
 
 ## 📂 Project Structure
 
-```
+```id="structure1"
 CRICKET_VISION_INTELL_SYSTEM_GDG/
 │
-├── agents/              # AI agents & logic
+├── agents/              # AI logic
 ├── static/              # CSS, JS, assets
-├── templates/           # HTML templates
-├── __pycache__/         # Python cache (ignored)
-├── main.py              # Main application entry
+├── templates/           # HTML files
+├── photos/              # Image dataset (recommended location)
+├── main.py              # Main application
 ├── requirements.txt     # Dependencies
 ├── .env                 # API keys (ignored)
-├── .gitignore           # Ignored files
 └── README.md
 ```
 
@@ -86,41 +94,39 @@ CRICKET_VISION_INTELL_SYSTEM_GDG/
 
 ## 🔧 Installation & Setup
 
-### 1️⃣ Clone the repository
+### 1️⃣ Clone Repository
 
-```bash
+```bash id="install1"
 git clone https://github.com/parth-khera/CRICKET_VISION_INTELL_SYSTEM_GDG.git
 cd CRICKET_VISION_INTELL_SYSTEM_GDG
 ```
 
-### 2️⃣ Create virtual environment (recommended)
+### 2️⃣ Create Virtual Environment
 
-```bash
+```bash id="install2"
 python -m venv venv
-venv\Scripts\activate   # Windows
+venv\Scripts\activate
 ```
 
-### 3️⃣ Install dependencies
+### 3️⃣ Install Dependencies
 
-```bash
+```bash id="install3"
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Setup environment variables
+### 4️⃣ Setup Environment Variables
 
-Create a `.env` file:
+Create `.env` file:
 
-```
+```id="install4"
 GEMINI_API_KEY=your_api_key_here
 ```
 
-⚠️ Never push `.env` to GitHub
-
 ---
 
-### 5️⃣ Run the application
+### 5️⃣ Run the Project
 
-```bash
+```bash id="install5"
 python main.py
 ```
 
@@ -128,32 +134,29 @@ python main.py
 
 ## 📸 Features
 
-* 🎯 AI-based shot detection
-* ⚡ Real-time match intelligence
-* 🧠 Smart AI-generated insights
-* 📊 Deep analytics beyond traditional stats
-* 🖼️ Image-based match analysis
-* 🔍 Context-aware gameplay understanding
+* 🎯 Shot detection using computer vision
+* ⚡ Real-time match understanding
+* 🧠 AI-powered insights generation
+* 🖼️ Image-based cricket analysis
+* 📊 Advanced analytics beyond scoreboards
 
 ---
 
-## 🔮 Future Enhancements
+## 🔮 Future Improvements
 
-* 📡 Live match streaming integration
-* 📊 Player heatmaps & advanced visuals
-* 🤖 Predictive match analytics
-* 📱 Mobile application
-* 🌐 Full-stack deployment (cloud + APIs)
+* 📡 Live match video processing
+* 📊 Player heatmaps
+* 🤖 Predictive analytics
+* 🌐 Cloud deployment support
 
 ---
 
 ## 🧪 Use Cases
 
-* Cricket analytics platforms
-* Sports broadcasting enhancements
-* Coaching & training tools
-* Fan engagement systems
-* AI-powered commentary engines
+* Sports analytics platforms
+* Coaching tools
+* Broadcasting enhancements
+* AI commentary systems
 
 ---
 
@@ -166,24 +169,20 @@ python main.py
 
 ---
 
-## 🏆 Hackathon Ready
+## 📜 License
 
-This project is designed for:
-
-* GDG Hackathons
-* AI/ML Competitions
-* Sports Tech Challenges
+MIT License
 
 ---
-
 
 ## ⭐ Support
 
-If you found this project useful:
+If you like this project:
 
-* ⭐ Star this repository
+* ⭐ Star the repo
 * 🍴 Fork it
-* 🧠 Contribute ideas
+* 🤝 Contribute
+
 ---
 
-> ⚡ "Cricket is not just a game of numbers — it's a game of intelligence. This system decodes it."
+> ⚡ "Turning cricket visuals into intelligence."
