@@ -4,117 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cricket Vision Intelligence System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Agentic AI system for real-time cricket visual analysis powered by Gemini">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="glass-header">
-            <div class="logo">
-                <span class="logo-icon">🏏</span>
+<div class="app-container">
+
+    <!-- Header -->
+    <header class="glass-header">
+        <div class="logo">
+            <span class="logo-icon">🏏</span>
+            <div>
                 <h1>Cricket Vision <span class="highlight">Intelligence</span></h1>
+                <p class="logo-sub">Powered by Gemini AI · Live Context</p>
             </div>
-            <div class="stats-mini" id="statsMini">
-                <div class="stat-item">
-                    <span class="stat-label">Processed</span>
-                    <span class="stat-value" id="valProcessed">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">Aggression Index</span>
-                    <span class="stat-value" id="valAggression">0%</span>
-                </div>
-            </div>
-        </header>
-
-        <main class="dashboard">
-            <!-- Left Column: Input and Vision -->
-            <div class="column col-left">
-                <section class="card upload-section">
-                    <h2>Upload Match Visual</h2>
-                    <div class="upload-zone" id="dropZone" style="padding: 2rem;">
-                        <input type="file" id="fileInput" accept="image/jpeg, image/png" style="margin-bottom: 1rem; display: block; width: 100%;">
-                        <button onclick="document.getElementById('fileInput').click()" style="padding: 10px 20px; background: var(--accent-primary); border: none; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; font-size: 1rem;">Select Image & Analyze</button>
-                        <p class="subtext" style="margin-top: 1rem;">JPG, PNG supported</p>
-                    </div>
-                </section>
-
-                <section class="card vision-section" id="visionSection" style="display: none;">
-                    <h2>Vision Agent Output</h2>
-                    <div class="image-preview-container">
-                        <div class="preview-box">
-                            <span class="tag">Original</span>
-                            <img id="originalPreview" src="" alt="Original">
-                        </div>
-                        <div class="preview-box">
-                            <span class="tag">Canny Edge Map</span>
-                            <img id="edgePreview" src="" alt="Edge Map">
-                        </div>
-                    </div>
-                    <div class="vision-status">
-                        <div class="status-indicator active"></div>
-                        <span id="detectionStatusText">Processing image features...</span>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Right Column: Agents & Insights -->
-            <div class="column col-right">
-                
-                <!-- Structuring & Context -->
-                <div class="row-cards">
-                    <section class="card small-card">
-                        <h3>Event Extraction</h3>
-                        <div class="data-grid" id="eventGrid">
-                            <p class="placeholder">Awaiting visual input...</p>
-                        </div>
-                    </section>
-
-                    <section class="card small-card live-context">
-                        <h3>Live Context <span class="pulse-dot"></span></h3>
-                        <div class="data-grid" id="contextGrid">
-                            <p class="placeholder">Syncing feed...</p>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- Intelligence Agent -->
-                <section class="card intelligence-section">
-                    <h2><span class="ai-sparkles">✨</span> Gemini Intelligence</h2>
-                    <div class="insights-container" id="insightsContainer">
-                        <div class="empty-state">
-                            Upload an image to generate tactical insights and match understanding.
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Explanation Modal / Panel -->
-                <section class="card explanation-section" id="explanationSection" style="display: none;">
-                    <div class="expl-header">
-                        <h3>AI Reasoning</h3>
-                        <button class="close-btn" onclick="hideExplanation()">×</button>
-                    </div>
-                    <div class="expl-content">
-                        <div class="loader" id="explLoader">Thinking...</div>
-                        <p id="explText"></p>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
-
-    <!-- Template for Insight Item -->
-    <template id="insightTemplate">
-        <div class="insight-item">
-            <div class="insight-header">
-                <span class="insight-title"></span>
-                <span class="insight-badge"></span>
-            </div>
-            <p class="insight-desc"></p>
-            <button class="explain-btn">Explain Reasoning</button>
         </div>
-    </template>
+        <div class="live-badge"><span class="pulse-dot"></span> LIVE</div>
+        <div class="header-stats">
+            <div class="hstat"><span class="hstat-val" id="valScore">-/-</span><span class="hstat-label">Score</span></div>
+            <div class="hstat"><span class="hstat-val" id="valSR">-</span><span class="hstat-label">Strike Rate</span></div>
+            <div class="hstat"><span class="hstat-val" id="valProcessed">0</span><span class="hstat-label">Balls</span></div>
+            <div class="hstat"><span class="hstat-val" id="valAggression">0%</span><span class="hstat-label">Aggression</span></div>
+        </div>
+    </header>
 
-    <script src="/static/js/app.js"></script>
+    <!-- Main Grid -->
+    <main class="dashboard">
+
+        <!-- === LEFT COLUMN === -->
+        <div class="col-left">
+
+            <!-- Upload Card -->
+            <section class="card upload-card">
+                <h2>Upload Match Visual</h2>
+                <div class="upload-zone" id="dropZone">
+                    <span class="upload-icon">📸</span>
+                    <p>Drag & Drop or</p>
+                    <label class="upload-btn" for="fileInput">Choose Image</label>
+                    <input type="file" id="fileInput" accept="image/jpeg, image/png">
+                    <p class="subtext">JPG or PNG · Gemini analyzes the photo directly</p>
+                </div>
+                <div id="uploadStatus" class="upload-status" style="display:none"></div>
+            </section>
+
+            <!-- Vision Output -->
+            <section class="card" id="visionSection" style="display:none">
+                <h2>Vision Agent Output</h2>
+                <div class="img-row">
+                    <div class="img-box"><span class="img-tag">Original</span><img id="originalPreview" src="" alt=""></div>
+                    <div class="img-box"><span class="img-tag">Edge Map</span><img id="edgePreview" src="" alt=""></div>
+                </div>
+                <div class="vision-status">
+                    <span class="dot-active"></span>
+                    <span id="detectionStatusText">Analyzing...</span>
+                </div>
+            </section>
+
+            <!-- Event Extraction -->
+            <section class="card" id="eventCard" style="display:none">
+                <h2>Event Extraction</h2>
+                <div class="event-grid" id="eventGrid"></div>
+            </section>
+
+            <!-- Live Match Context -->
+            <section class="card live-card" id="contextCard" style="display:none">
+                <div class="live-header">
+                    <h2>Live Match Context</h2>
+                    <span class="source-badge" id="sourceLabel">Connecting...</span>
+                </div>
+                <div class="match-summary-box" id="matchSummaryBox" style="display:none">
+                    <span class="match-score-title" id="matchSummaryText"></span>
+                </div>
+                <div class="context-grid" id="contextGrid"></div>
+            </section>
+        </div>
+
+        <!-- === RIGHT COLUMN === -->
+        <div class="col-right">
+
+            <!-- Scorecard-style stat bar -->
+            <section class="card scorecard-bar" id="scorecardBar" style="display:none">
+                <div class="sc-item"><div class="sc-val" id="scRuns">0</div><div class="sc-label">Total Runs</div></div>
+                <div class="sc-divider"></div>
+                <div class="sc-item"><div class="sc-val" id="scWickets">0</div><div class="sc-label">Wickets</div></div>
+                <div class="sc-divider"></div>
+                <div class="sc-item"><div class="sc-val" id="scBalls">0</div><div class="sc-label">Balls</div></div>
+                <div class="sc-divider"></div>
+                <div class="sc-item"><div class="sc-val" id="scSR">0.0</div><div class="sc-label">Strike Rate</div></div>
+                <div class="sc-divider"></div>
+                <div class="sc-item"><div class="sc-val" id="scAgg">0%</div><div class="sc-label">Aggression</div></div>
+            </section>
+
+            <!-- Charts Row -->
+            <div class="charts-row" id="chartsRow" style="display:none">
+                <!-- Worm / Run Rate Chart -->
+                <section class="card chart-card">
+                    <h3>Run Rate · Worm</h3>
+                    <canvas id="wormChart" height="160"></canvas>
+                </section>
+                <!-- Shot Distribution Donut -->
+                <section class="card chart-card">
+                    <h3>Shot Distribution</h3>
+                    <canvas id="shotChart" height="160"></canvas>
+                </section>
+                <!-- Pressure Donut -->
+                <section class="card chart-card">
+                    <h3>Pressure Level</h3>
+                    <canvas id="pressureChart" height="160"></canvas>
+                </section>
+            </div>
+
+            <!-- Radar Chart -->
+            <section class="card" id="radarCard" style="display:none">
+                <h3>Batter Visual Stats (AI Scored)</h3>
+                <div style="max-width: 320px; margin: 0 auto;">
+                    <canvas id="visualStatsChart"></canvas>
+                </div>
+            </section>
+
+            <!-- AI Insights -->
+            <section class="card insight-section">
+                <h2><span class="ai-sparkles">✨</span> Gemini Intelligence</h2>
+                <div class="insights-container" id="insightsContainer">
+                    <div class="empty-state">Upload a cricket image to generate live AI insights, predictions, and match stats.</div>
+                </div>
+            </section>
+
+            <!-- Explanation Panel -->
+            <section class="card expl-card" id="explanationSection" style="display:none">
+                <div class="expl-header">
+                    <h3>🧠 AI Reasoning</h3>
+                    <button class="close-btn" onclick="hideExplanation()">×</button>
+                </div>
+                <div class="expl-body">
+                    <div id="explLoader" class="loader-text">Thinking...</div>
+                    <p id="explText"></p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<!-- Insight Card Template -->
+<template id="insightTemplate">
+    <div class="insight-item">
+        <div class="insight-header">
+            <span class="insight-title"></span>
+            <span class="insight-badge"></span>
+        </div>
+        <p class="insight-desc"></p>
+        <button class="explain-btn">Explain Reasoning</button>
+    </div>
+</template>
+
+<script src="/static/js/app.js"></script>
 </body>
 </html>

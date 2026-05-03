@@ -53,7 +53,7 @@ async def analyze_image(file: UploadFile = File(...)):
         insights = generate_insights(file_location, event_data, context_data)
         
         # 5. Stats Agent
-        stats_tracker.update_stats(insights)
+        stats_tracker.update_stats(insights, context_data, event_data)
         
         return JSONResponse(content={
             "status": "success",
