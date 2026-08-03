@@ -163,9 +163,7 @@ python main.py
 ## 🤝 Team
 
 * **Parth Khera**
-* Sourabh
-* Ashutosh
-* Deepanshu
+* Navjot Bhandari
 
 ---
 
